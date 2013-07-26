@@ -1,7 +1,7 @@
 {
   "name": "grunt-jslinker",
   "description": "Autoinsert script tags in an html file",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/daneryl/grunt-jslinker",
   "contributors": [
     "daneryl <daneryl@gmail.com>",
