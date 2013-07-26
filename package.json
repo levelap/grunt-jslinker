@@ -1,24 +1,23 @@
 {
-  "name": "grunt-scriptlinker",
+  "name": "grunt-jslinker",
   "description": "Autoinsert script tags in an html file",
   "version": "0.1.1",
-  "homepage": "https://github.com/scott-laursen/grunt-scriptlinker",
-  "author": {
-    "name": "scott-laursen",
-    "email": "thomas@addgo.com",
-    "url": "www.addgo.com"
-  },
+  "homepage": "https://github.com/daneryl/grunt-jslinker",
+  "contributors": [
+    "daneryl <daneryl@gmail.com>",
+    "scott-laursen <thomas@addgo.com> (www.addgo.com)"
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/scott-laursen/grunt-scriptlinker.git"
+    "url": "git@github.com:daneryl/grunt-jslinker.git"
   },
   "bugs": {
-    "url": "https://github.com/scott-laursen/grunt-scriptlinker/issues"
+    "url": ""
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/scott-laursen/grunt-scriptlinker/blob/master/LICENSE-MIT"
+      "url": "https://github.com/daneryl/grunt-jslinker/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
