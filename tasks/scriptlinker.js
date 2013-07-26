@@ -33,13 +33,24 @@ module.exports = function(grunt) {
 				start = -1,
 				end = -1;
 
+        var includes = [];
+        var excludes = [];
+
+        var include =  grunt.file.expand(f.orig.src[0].include);
+        if(f.orig.src[0].exclude !== undefined) {
+          excludes =  grunt.file.expand(f.orig.src[0].exclude);
+        }
+
 			// Create string tags
-			scripts = f.src.filter(function (filepath) {
+			scripts = include.filter(function (filepath) {
 					// Warn on and remove invalid source files (if nonull was set).
 					if (!grunt.file.exists(filepath)) {
 						grunt.log.warn('Source file "' + filepath + '" not found.');
 						return false;
-					} else { return true; }
+					} 
+          if(excludes.indexOf(filepath) !== -1) {return false;}
+
+          return true; 
 				}).map(function (filepath) {
 					return util.format(options.fileTmpl, filepath.replace(options.appRoot, ''));
 				}).join('');
@@ -50,17 +61,17 @@ module.exports = function(grunt) {
 			} else {
 				page = grunt.file.read(f.dest);
 
-				start = page.indexOf(options.startTag);
-				end = page.indexOf(options.endTag);
+        start = page.indexOf(options.startTag);
+        end = page.indexOf(options.endTag);
 
-				if (start === -1 || end === -1 || start >= end) {
-					grunt.log.warn('Destination file\'s "' + f.dest + '" start and/or end tag is not correctly setup.');
-				} else {
-					newPage = page.substr(0, start + options.startTag.length) + scripts + page.substr(end);
-					// Insert the scripts
-					grunt.file.write(f.dest, newPage);
-					grunt.log.writeln('File "' + f.dest + '" updated.');
-				}
+        if (start === -1 || end === -1 || start >= end) {
+          grunt.log.warn('Destination file\'s "' + f.dest + '" start and/or end tag is not correctly setup.');
+        } else {
+          newPage = page.substr(0, start + options.startTag.length) + scripts + page.substr(end);
+          // Insert the scripts
+          grunt.file.write(f.dest, newPage);
+          grunt.log.writeln('File "' + f.dest + '" updated.');
+        }
 			}
 		});
 	});
