@@ -25,7 +25,7 @@ module.exports = function(grunt) {
       }
       return true;
     }).map(function(file_path){
-      scripts += indent_level + "<script src='"+file_path+"'></script>\n";
+      scripts += indent_level + "<script src='"+file_path.replace(options.relative_to, '')+"'></script>\n";
     });
 
     var page_top = page.substr(0, start + options.start_tag.length);
