@@ -12,9 +12,7 @@ module.exports = function(grunt) {
       end_scripts_tag: "<!--SCRIPTS END-->"
     });
 
-
     var page = grunt.file.read(options.target);
-
     var start = page.indexOf(options.start_scripts_tag);
     var end = page.indexOf(options.end_scripts_tag, start);
 
@@ -29,7 +27,10 @@ module.exports = function(grunt) {
       scripts += "<script src='"+file_path+"'></script>\n";
     });
 
-    var newPage = page.substr(0, start + options.start_scripts_tag.length) + scripts + page.substr(end);
+    var page_top = page.substr(0, start + options.start_scripts_tag.length);
+    var page_bottom = page.substr(end);
+
+    var newPage = page_top+scripts+page_bottom;
     grunt.file.write(options.target, newPage);
   });
 
