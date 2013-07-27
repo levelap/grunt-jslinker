@@ -17,7 +17,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-jslinker');
 ```
 
-## The "scriptlinker" task
+## The "jslinker" task
 
 ### Overview
 In your project's Gruntfile, add a section named `jslinker` to the data object passed into `grunt.initConfig()`.
@@ -27,10 +27,11 @@ grunt.initConfig({
   jslinker: {
     default:{
       options: {
-        target: "test/fixtures/target_files/default.html",
+        target: "app/index.html",
         start_tag: "<!--SCRIPTS-->",
         end_tag: "<!--SCRIPTS END-->",
-        relative_to: "app/"
+        relative_to: "app/",
+        exclude: ["app/scripts/specs/**.js"]
       },
       src: ["app/scripts/**/*.js"]
     }
