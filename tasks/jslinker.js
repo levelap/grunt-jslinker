@@ -8,13 +8,13 @@ module.exports = function(grunt) {
     var options = this.options({
       target:"", 
       exclude:[],
-      start_scripts_tag: "<!--SCRIPTS-->",
-      end_scripts_tag: "<!--SCRIPTS END-->"
+      start_tag: "<!--SCRIPTS-->",
+      end_tag: "<!--SCRIPTS END-->"
     });
 
     var page = grunt.file.read(options.target);
-    var start = page.indexOf(options.start_scripts_tag);
-    var end = page.indexOf(options.end_scripts_tag, start);
+    var start = page.indexOf(options.start_tag);
+    var end = page.indexOf(options.end_tag, start);
     var indent_level = get_indent_level(page, start);
 
     var excluded_files = grunt.file.expand(options.exclude);
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
       scripts += indent_level + "<script src='"+file_path+"'></script>\n";
     });
 
-    var page_top = page.substr(0, start + options.start_scripts_tag.length);
+    var page_top = page.substr(0, start + options.start_tag.length);
     var page_bottom = indent_level + page.substr(end);
 
     var newPage = page_top+scripts+page_bottom;
