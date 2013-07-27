@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         options: {
           target: "test/fixtures/file.html",
         },
-        files: {src: "test/fixtures/**.js"}
+        src: ["test/fixtures/*.js"]
       }
     }
 

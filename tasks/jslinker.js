@@ -15,6 +15,18 @@ module.exports = function(grunt) {
 
     var target_file = options.target;
 
+    var page = grunt.file.read(target_file);
+
+    var start = page.indexOf(start_scripts_tag);
+    var end = page.indexOf(end_scripts_tag);
+
+    var scripts = "\n";
+    this.filesSrc.forEach(function(file_path){
+      scripts += "<script src='"+file_path+"'></script>\n";
+    });
+
+    var newPage = page.substr(0, start + start_scripts_tag.length) + scripts + page.substr(end);
+    grunt.file.write(target_file, newPage);
   });
 
 };
