@@ -15,6 +15,7 @@ module.exports = function(grunt) {
     var page = grunt.file.read(options.target);
     var start = page.indexOf(options.start_scripts_tag);
     var end = page.indexOf(options.end_scripts_tag, start);
+    var indent_level = get_indent_level(page, start);
 
     var excluded_files = grunt.file.expand(options.exclude);
     var scripts = "\n";
@@ -24,14 +25,26 @@ module.exports = function(grunt) {
       }
       return true;
     }).map(function(file_path){
-      scripts += "<script src='"+file_path+"'></script>\n";
+      scripts += indent_level + "<script src='"+file_path+"'></script>\n";
     });
 
     var page_top = page.substr(0, start + options.start_scripts_tag.length);
-    var page_bottom = page.substr(end);
+    var page_bottom = indent_level + page.substr(end);
 
     var newPage = page_top+scripts+page_bottom;
     grunt.file.write(options.target, newPage);
   });
+
+  var get_indent_level = function(page, character){
+    var indent_level = "";
+    var counter = 2;
+    var current_indent_char = page[character-counter];
+    while(current_indent_char !== "\n"){
+      indent_level+= " ";
+      current_indent_char = page[character-counter];
+      counter++;
+    }
+    return indent_level;
+  };
 
 };

@@ -24,7 +24,7 @@ describe('jslinker', function () {
   })
 
   describe("duplicated_end_tag task", function(){
-    it('should include all js files except excluded on options', function () {
+    it('should include all js between the two tags', function () {
       var actual = grunt.file.read('test/fixtures/target_files/duplicated_end_tag.html');
       var expected = grunt.file.read('test/fixtures/expected/duplicated_end_tag.html');
       expect(actual).toEqual(expected);
