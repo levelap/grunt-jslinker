@@ -29,7 +29,8 @@ grunt.initConfig({
       options: {
         target: "test/fixtures/target_files/default.html",
         start_tag: "<!--SCRIPTS-->",
-        end_tag: "<!--SCRIPTS END-->"
+        end_tag: "<!--SCRIPTS END-->",
+        relative_to: "app/"
       },
       src: ["app/scripts/**/*.js"]
     }
