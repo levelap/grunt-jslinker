@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     var page = grunt.file.read(options.target);
 
     var start = page.indexOf(start_scripts_tag);
-    var end = page.indexOf(end_scripts_tag);
+    var end = page.indexOf(end_scripts_tag, start);
 
     var excluded_files = grunt.file.expand(options.exclude);
     var scripts = "\n";

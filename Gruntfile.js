@@ -34,6 +34,12 @@ module.exports = function(grunt) {
           exclude: ["test/fixtures/js/excluded/*.js"]
         },
         src: ["test/fixtures/js/**/**.js"]
+      },
+      duplicated_end_tag:{
+        options: {
+          target: "test/fixtures/target_files/duplicated_end_tag.html"
+        },
+        src: ["test/fixtures/js/**/**.js"]
       }
     }
 
