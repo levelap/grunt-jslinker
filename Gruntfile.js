@@ -1,11 +1,3 @@
-/*
- * grunt-scriptlinker
- * https://github.com/scott-laursen/grunt-scriptlinker
- *
- * Copyright (c) 2013 scott-laursen
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 module.exports = function(grunt) {
@@ -15,41 +7,35 @@ module.exports = function(grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>',
+        'tasks/*.js'
       ],
       options: {
         jshintrc: '.jshintrc',
       },
     },
 
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp'],
-    },
+    jasmine_node: {
+      coverage: {
 
-    // Configuration to be run (and then tested).
-    jslinker: {
-      default_options: {
-        options: {
-          startTag: '<!--SCRIPTS-->',
-          endTag: '<!--SCRIPTS END-->',
-          fileTmpl: '\n<script src="%s"></script>',
-          appRoot: 'test/'
-        },
-        files: {
-          'test/fixtures/file.html': {
-            include:['test/fixtures/**/**.js'],
-            exclude:['**/excluded/**.js']
-          }
-        }
+      },
+      options: {
+        forceExit: true,
+        match: '.',
+        matchall: false,
+        extensions: 'js',
+        specNameMatcher: 'spec'
       }
     },
 
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js'],
-    },
+    jslinker: {
+      default:{
+        options: {
+          target: "test/fixtures/file.html",
+        },
+        files: {src: "test/fixtures/**.js"}
+      }
+    }
+
 
   });
 
@@ -58,12 +44,11 @@ module.exports = function(grunt) {
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-jasmine-node-coverage');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'jslinker:default_options', 'nodeunit']);
+  grunt.registerTask('test', ['jslinker', 'jasmine_node']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
