@@ -20,6 +20,18 @@ module.exports = function(grunt) {
       requirejs: false,
       forceExit: true,
     },
+    copy: {
+      main: {
+        files: [
+          {
+            expand: true, 
+            cwd: 'test/fixtures/templates/',
+            src: ['**'],
+            dest: 'test/fixtures/target_files/'
+          }
+        ]
+      }
+    },
 
     jslinker: {
       default:{
@@ -54,11 +66,12 @@ module.exports = function(grunt) {
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-jasmine-node-coverage');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['jslinker', 'jasmine_node']);
+  grunt.registerTask('test', ['copy', 'jslinker', 'jasmine_node']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
