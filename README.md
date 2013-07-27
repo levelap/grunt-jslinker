@@ -1,4 +1,4 @@
-# grunt-scriptlinker
+# grunt-jslinker
 
 > Autoinsert script tags (or other filebased tags) in an html file
 
@@ -8,60 +8,57 @@ This plugin requires Grunt `~0.4.x`
 When the task is run the destination file(s) is updated with script tags pointing to all the source files. The reason this plugin was built was to automate the process of inserting script tags when building large web apps.
 
 ```shell
-npm install grunt-scriptlinker --save-dev
+npm install grunt-jslinker 
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-scriptlinker');
+grunt.loadNpmTasks('grunt-jslinker');
 ```
 
 ## The "scriptlinker" task
 
 ### Overview
-In your project's Gruntfile, add a section named `scriptlinker` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `jslinker` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  scriptlinker: {
-    defaultOptions: {
+  jslinker: {
+    default:{
       options: {
-        startTag: '<!--SCRIPTS-->',
-        endTag: '<!--SCRIPTS END-->',
-        fileTmpl: '<script src="%s"></script>',
-        appRoot: 'app/'
+        target: "test/fixtures/target_files/default.html",
+        start_tag: "<!--SCRIPTS-->",
+        end_tag: "<!--SCRIPTS END-->",
+        relative_to: "app/"
       },
-      files: {
-        // Target-specific file lists and/or options go here.
-        'app/index.html': ['app/scripts/**/*.js']
-      },
-    },
-  },
+      src: ["app/scripts/**/*.js"]
+    }
+  }
 })
 ```
 
 ### Options
 
-#### options.startTag
+#### options.start_tag
 Type: `String`
 Default value: `'<!--SCRIPTS-->'`
 
-Script tags are places between the startTag and endTag
+Script tags are places between the start_tag and end_tag
 
-#### options.endTag
+#### options.end_tag
 Type: `String`
 Default value: `'<!--SCRIPTS END-->'`
 
 Script tags are places between the startTag and endTag
 
-#### options.fileTmpl
+#### options.exclude
 Type: `String`
-Default value: `'<script src="%s"></script>'`
+Default value: `''`
 
-The template used to insert the reference to the script files.
+Prevent files from being included
 
-#### options.appRoot
+#### options.relative_to
 Type: `String`
 Default value: `''`
 
