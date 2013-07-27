@@ -15,24 +15,25 @@ module.exports = function(grunt) {
     },
 
     jasmine_node: {
-      coverage: {
-
-      },
-      options: {
-        forceExit: true,
-        match: '.',
-        matchall: false,
-        extensions: 'js',
-        specNameMatcher: 'spec'
-      }
+      specNameMatcher: "./spec", 
+      projectRoot: ".",
+      requirejs: false,
+      forceExit: true,
     },
 
     jslinker: {
       default:{
         options: {
-          target: "test/fixtures/file.html",
+          target: "test/fixtures/target_files/default.html"
         },
-        src: ["test/fixtures/*.js"]
+        src: ["test/fixtures/js/**/**.js"]
+      },
+      exclude:{
+        options: {
+          target: "test/fixtures/target_files/excluded.html",
+          exclude: ["test/fixtures/js/excluded/*.js"]
+        },
+        src: ["test/fixtures/js/**/**.js"]
       }
     }
 

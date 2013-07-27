@@ -7,10 +7,21 @@ describe('jslinker', function () {
   beforeEach(function () {
   });
 
-  it('should include all js files configured on default task', function () {
-    var actual = grunt.file.read('test/fixtures/file.html');
-    var expected = grunt.file.read('test/expected/file.html');
-    expect(actual).toEqual(expected);
-  });
+  describe("default task", function(){
+    it('should include all js files', function () {
+      var actual = grunt.file.read('test/fixtures/target_files/default.html');
+      var expected = grunt.file.read('test/fixtures/expected/default.html');
+      expect(actual).toEqual(expected);
+    });
+  })
+
+  describe("exclude task", function(){
+    it('should include all js files except excluded on options', function () {
+      var actual = grunt.file.read('test/fixtures/target_files/excluded.html');
+      var expected = grunt.file.read('test/fixtures/expected/excluded.html');
+      expect(actual).toEqual(expected);
+    });
+  })
+
 
 });
