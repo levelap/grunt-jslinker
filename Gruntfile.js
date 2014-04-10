@@ -39,7 +39,8 @@ module.exports = function(grunt) {
           target: "test/fixtures/target_files/default.html",
           start_tag: "<!--MYSCRIPTS-->",
           end_tag: "<!--MYSCRIPTS END-->",
-          relative_to: "test/"
+          relative_to: "test/",
+          prefix_path:"prefix_folder/"
         },
         src: ["test/fixtures/js/**/**.js"]
       },

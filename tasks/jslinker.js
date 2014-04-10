@@ -9,7 +9,8 @@ module.exports = function(grunt) {
       target:"", 
       exclude:[],
       start_tag: "<!--SCRIPTS-->",
-      end_tag: "<!--SCRIPTS END-->"
+      end_tag: "<!--SCRIPTS END-->",
+      prefix_path:''
     });
 
     var page = grunt.file.read(options.target);
@@ -25,7 +26,7 @@ module.exports = function(grunt) {
       }
       return true;
     }).map(function(file_path){
-      scripts += indent_level + "<script src='"+file_path.replace(options.relative_to, '')+"'></script>\n";
+      scripts += indent_level + "<script src='"+options.prefix_path+file_path.replace(options.relative_to, '')+"'></script>\n";
     });
 
     var page_top = page.substr(0, start + options.start_tag.length);

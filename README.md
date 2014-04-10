@@ -65,4 +65,10 @@ Default value: `''`
 
 The root of the application. Script links are relative from this folder.
 
+#### options.prefix_path
+Type: `String`
+Default value: `''`
+
+string to prefix all include paths
+
 
