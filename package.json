@@ -1,10 +1,11 @@
 {
   "name": "grunt-jslinker",
   "description": "Autoinsert script tags in an html file",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "homepage": "https://github.com/levelap/grunt-jslinker",
   "contributors": [
     "daneryl <daneryl@gmail.com>",
+    "rafapolit <rafaelpolit@gmail.com>",
     "scott-laursen <thomas@addgo.com> (www.addgo.com)"
   ],
   "repository": {
@@ -14,24 +15,22 @@
   "bugs": {
     "url": "https://github.com/levelap/grunt-jslinker/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/levelap/grunt-jslinker/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "grunt test"
   },
+  "dependencies": {
+    "lodash": ">=4.11.1"
+  },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-copy": "0.4.1",
-    "grunt-jasmine-node": "0.1.0",
-    "grunt": "0.4.0"
+    "grunt": ">=1.0.1",
+    "grunt-contrib-jshint": ">=1.0.0",
+    "grunt-contrib-copy": ">=1.0.0",
+    "grunt-jasmine-node": "levelap-dev/grunt-jasmine-node"
   },
   "keywords": [
     "gruntplugin"

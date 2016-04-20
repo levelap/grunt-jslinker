@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
@@ -10,21 +10,25 @@ module.exports = function(grunt) {
         'tasks/*.js'
       ],
       options: {
-        jshintrc: '.jshintrc',
-      },
+        jshintrc: '.jshintrc'
+      }
     },
 
     jasmine_node: {
-      specNameMatcher: "spec", 
-      projectRoot: ".",
-      requirejs: false,
-      forceExit: true,
+      options: {
+        specNameMatcher: 'spec',
+        projectRoot: '.',
+        requirejs: false,
+        forceExit: true,
+        verbose: true
+      },
+      all: ['spec/']
     },
     copy: {
       main: {
         files: [
           {
-            expand: true, 
+            expand: true,
             cwd: 'test/fixtures/templates/',
             src: ['**'],
             dest: 'test/fixtures/target_files/'
@@ -34,28 +38,28 @@ module.exports = function(grunt) {
     },
 
     jslinker: {
-      default:{
+      default: {
         options: {
-          target: "test/fixtures/target_files/default.html",
-          start_tag: "<!--MYSCRIPTS-->",
-          end_tag: "<!--MYSCRIPTS END-->",
-          relative_to: "test/",
-          prefix_path:"prefix_folder/"
+          target: 'test/fixtures/target_files/default.html',
+          start_tag: '<!--MYSCRIPTS-->',
+          end_tag: '<!--MYSCRIPTS END-->',
+          relative_to: 'test/',
+          prefix_path: 'prefix_folder/'
         },
-        src: ["test/fixtures/js/**/**.js"]
+        src: ['test/fixtures/js/**/**.js']
       },
-      exclude:{
+      exclude: {
         options: {
-          target: "test/fixtures/target_files/excluded.html",
-          exclude: ["test/fixtures/js/excluded/*.js"]
+          target: 'test/fixtures/target_files/excluded.html',
+          exclude: ['test/fixtures/js/excluded/*.js']
         },
-        src: ["test/fixtures/js/**/**.js"]
+        src: ['test/fixtures/js/**/**.js']
       },
-      duplicated_end_tag:{
+      duplicated_end_tag: {
         options: {
-          target: "test/fixtures/target_files/duplicated_end_tag.html"
+          target: 'test/fixtures/target_files/duplicated_end_tag.html'
         },
-        src: ["test/fixtures/js/**/**.js"]
+        src: ['test/fixtures/js/**/**.js']
       }
     }
 
@@ -72,7 +76,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['copy', 'jslinker', 'jasmine_node']);
+  grunt.registerTask('test', ['copy', 'jslinker', 'jasmine_node:all']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
