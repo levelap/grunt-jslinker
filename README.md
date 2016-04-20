@@ -3,7 +3,7 @@
 > Autoinsert script tags (or other filebased tags) in an html file
 
 ## Getting Started
-This plugin requires Grunt `~0.4.x`
+This plugin requires Grunt `1.0.1` and above.
 
 When the task is run the destination file(s) is updated with script tags pointing to all the source files. The reason this plugin was built was to automate the process of inserting script tags when building large web apps.
 
